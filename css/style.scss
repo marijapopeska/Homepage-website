@@ -1,0 +1,312 @@
+// Colors variables
+
+$color-1: #2e4f6c;
+$color-2: #023246;
+$color-3: #c56c86;
+$color-4: #ff7582;
+$color-5: #725a7a;
+$color-6: #a7a7a6;
+$color-7: #af9d96;
+$text-color1: #fff;
+
+// media aliases and breakpoints
+
+$screen-sm-min: 600px;
+$screen-md-min: 960px;
+$screen-lg-min: 1280px;
+$screen-xl-min: 1920px;
+
+$screen-xs-max: 599px;
+$screen-sm-max: 959px;
+$screen-md-max: 1279px;
+$screen-lg-max: 1919px;
+$screen-xl-max: 5000px;
+
+// media devices
+@mixin xs {
+    @media screen and (max-width: #{$screen-xs-max}) {
+        @content;
+    }
+}
+
+@mixin sm {
+    @media screen and (min-width: #{$screen-sm-min}) and (max-width: #{$screen-sm-max}) {
+        @content;
+    }
+}
+
+@mixin md {
+    @media screen and (min-width: #{$screen-md-min}) and (max-width: #{$screen-md-max}) {
+        @content;
+    }
+}
+
+@mixin lg {
+    @media screen and (min-width: #{$screen-lg-min}) and (max-width: #{$screen-lg-max}) {
+        @content;
+    }
+}
+
+@mixin xl {
+    @media screen and (min-width: #{$screen-xl-min}) and (max-width: #{$screen-xl-max}) {
+        @content;
+    }
+}
+
+///////////////////////////////////////////////////////////////////
+
+
+body {
+    margin: 0;
+    scroll-behavior: smooth;
+}
+
+.container {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 0.1fr 1fr;
+    grid-template-areas:
+        "nav nav nav nav"
+        "main main main main"
+    ;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(../assets/img/Modern-Mediterranean.jpg);
+    background-size: cover;
+    background-position: center;
+
+    @include xs {
+
+
+        display: grid;
+        width: 100%;
+        height: 100vh;
+        grid-template-columns: 1fr;
+        grid-template-rows: 0.1fr 1fr;
+        grid-template-areas:
+            "nav"
+            "main"
+        ;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(/assets/img/Modern-Mediterranean.jpg);
+        background-size: cover;
+        background-position: center;
+        justify-content: center;
+
+
+
+    }
+
+    nav {
+        display: grid;
+        color: $text-color1;
+        grid-area: nav;
+        grid-template-columns: max-content auto;
+        grid-template-areas: "logo menus";
+        align-items: center;
+        padding-left: 100px;
+        transition: 3s;
+
+        @include xs {
+            display: grid;
+            color: $text-color1;
+            grid-area: nav;
+            grid-template-columns: 1fr;
+            grid-template-areas: "logo""menus";
+            align-items: center;
+            padding-left: 0;
+            transition: none;
+            justify-content: center;
+        }
+
+        @include sm {
+            padding-left: 40px;
+        }
+
+
+        .logo {
+            grid-area: logo;
+            width: 100px;
+            font-family: futura;
+            font-size: 30px;
+            color: $text-color1;
+
+            @include xs {
+                display: grid;
+                justify-content: center;
+
+                align-items: center;
+                width: 100%;
+                height: 100%;
+            }
+
+            @include sm {
+                font-size: 24px;
+            }
+
+        }
+
+        .menus {
+            grid-area: menus;
+            display: flex;
+            flex-direction: row;
+            gap: 30px;
+            justify-content: end;
+            padding-right: 100px;
+            text-transform: uppercase;
+            text-decoration: none;
+            list-style: none;
+            position: relative;
+            color: $text-color1;
+            // transition: 3s;
+
+            @include sm {
+                gap: 10px;
+                justify-content: end;
+                padding-right: 20px;
+            }
+
+            .item {
+                position: relative;
+                color: $text-color1;
+                font-family: futura;
+                font-weight: 300;
+                font-size: 18px;
+
+                @include xs {
+                    visibility: collapse;
+                }
+
+                @include sm {
+                    font-size: 16px;
+                }
+
+
+                & a {
+                    color: $text-color1;
+                    text-decoration: none;
+
+                }
+
+                &::after {
+                    content: '';
+                    height: 3px;
+                    background-color: $color-1;
+                    position: absolute;
+                    left: 0;
+                    bottom: -10px;
+                    transition: 3s;
+                }
+
+                &:hover::after {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    main {
+        display: flex;
+        flex-direction: column;
+        color: $text-color1;
+        grid-area: main;
+        justify-content: center;
+        align-items: center;
+
+        @include xs {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+        }
+
+        h1 {
+            font-size: 48px;
+            font-family: futura;
+            color: #fff;
+
+            @include xs {
+                display: flex;
+                flex-direction: column;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
+                font-size: 30px;
+            }
+
+        }
+
+        p {
+            flex-wrap: wrap;
+            width: 50%;
+            text-align: center;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 18px;
+            font-weight: 300;
+            line-height: 25px;
+
+            @include xs {
+                display: flex;
+                flex-direction: column;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+
+
+
+
+        button {
+            width: 200px;
+            padding: 15px 0;
+            text-align: center;
+            border-radius: 25px;
+            border: 2px solid $color-1;
+            margin: 20px 10px;
+            background: transparent;
+            color: #fff;
+            font-family: futura;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+
+            @include xs {
+                display: flex;
+                flex-direction: column;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
+                // transition: 1.5s;
+
+
+            }
+
+            span {
+                background-color: #355c7d;
+                height: 100%;
+                width: 0;
+                border-radius: 25px;
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                z-index: -1;
+                transition: 0.5s;
+
+
+            }
+
+            &:hover span {
+                width: 100%;
+
+            }
+
+            &:hover {
+                border: none;
+            }
+        }
+
+
+
+
+
+    }
+
+}
