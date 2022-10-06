@@ -9,7 +9,7 @@ body {
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 0.1fr 1fr;
   grid-template-areas: "nav nav nav nav" "main main main main";
-  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(../assets/img/Modern-Mediterranean.jpg);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../assets/img/Modern-Mediterranean.jpg);
   background-size: cover;
   background-position: center;
 }
@@ -36,7 +36,6 @@ body {
   grid-template-areas: "logo menus";
   align-items: center;
   padding-left: 100px;
-  transition: 3s;
 }
 @media screen and (max-width: 599px) {
   .container nav {
@@ -56,15 +55,40 @@ body {
     padding-left: 40px;
   }
 }
-.container nav .logo {
-  grid-area: logo;
-  width: 100px;
+.container nav .waviy {
+  position: relative;
+  -webkit-box-reflect: below -20px linear-gradient(transparent, rgba(0, 0, 0, 0.2));
+  font-size: 35px;
+}
+.container nav .waviy span {
   font-family: futura;
-  font-size: 30px;
-  color: #fff;
+  position: relative;
+  display: inline-block;
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+  -webkit-animation: waviy 3s infinite;
+          animation: waviy 3s infinite;
+  -webkit-animation-delay: calc(0.6s * var(--i));
+          animation-delay: calc(0.6s * var(--i));
+}
+@-webkit-keyframes waviy {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  20% {
+    transform: translateY(-15px);
+  }
+}
+@keyframes waviy {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  20% {
+    transform: translateY(-15px);
+  }
 }
 @media screen and (max-width: 599px) {
-  .container nav .logo {
+  .container nav .waviy {
     display: grid;
     justify-content: center;
     align-items: center;
@@ -73,7 +97,7 @@ body {
   }
 }
 @media screen and (min-width: 600px) and (max-width: 959px) {
-  .container nav .logo {
+  .container nav .waviy {
     font-size: 24px;
   }
 }
@@ -130,28 +154,54 @@ body {
 .container nav .menus .item:hover::after {
   width: 100%;
 }
-.container main {
+.container .content {
   display: flex;
   flex-direction: column;
-  color: #fff;
   grid-area: main;
   justify-content: center;
   align-items: center;
 }
 @media screen and (max-width: 599px) {
-  .container main {
+  .container .content {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
   }
 }
-.container main h1 {
+.container .content h1 {
   font-size: 48px;
   font-family: futura;
-  color: #fff;
+  position: relative;
+  color: transparent;
+}
+.container .content h1.content2::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: #ffffff;
+  border-right: 2px solid #af9d96;
+  overflow: hidden;
+  transition: width 2s ease;
+  white-space: nowrap;
+}
+.container .content h1.content3::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  color: #ffffff;
+  border-right: 2px solid #af9d96;
+  overflow: hidden;
+  transition: width 3s ease-out;
+  white-space: nowrap;
 }
 @media screen and (max-width: 599px) {
-  .container main h1 {
+  .container .content h1 {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -160,7 +210,7 @@ body {
     font-size: 30px;
   }
 }
-.container main p {
+.container .content p {
   flex-wrap: wrap;
   width: 50%;
   text-align: center;
@@ -168,9 +218,10 @@ body {
   font-size: 18px;
   font-weight: 300;
   line-height: 25px;
+  color: #fff;
 }
 @media screen and (max-width: 599px) {
-  .container main p {
+  .container .content p {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -178,7 +229,7 @@ body {
     align-items: center;
   }
 }
-.container main button {
+.container .content button {
   width: 200px;
   padding: 15px 0;
   text-align: center;
@@ -193,7 +244,7 @@ body {
   z-index: 1;
 }
 @media screen and (max-width: 599px) {
-  .container main button {
+  .container .content button {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -201,7 +252,7 @@ body {
     align-items: center;
   }
 }
-.container main button span {
+.container .content button span {
   background-color: #355c7d;
   height: 100%;
   width: 0;
@@ -212,9 +263,9 @@ body {
   z-index: -1;
   transition: 0.5s;
 }
-.container main button:hover span {
+.container .content button:hover span {
   width: 100%;
 }
-.container main button:hover {
+.container .content button:hover {
   border: none;
 }/*# sourceMappingURL=style.css.map */
